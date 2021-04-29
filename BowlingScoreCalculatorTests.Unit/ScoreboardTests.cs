@@ -12,7 +12,7 @@ namespace BowlingScoreCalculatorTests.Unit
         [InlineData(3, 7, 2, 0, 14)]
         [InlineData(10, 0, 2, 0, 14)]
         [InlineData(10, 0, 2, 4, 22)]
-        public void ScoreboardCalculatesScoresCorrectly(int roll1, int roll2, int roll3, int roll4, int expected)
+        public void ScoreboardCalculatesRegularFrameScoresCorrectly(int roll1, int roll2, int roll3, int roll4, int expected)
         {
             int[][] frames = new[]
             {
@@ -59,6 +59,30 @@ namespace BowlingScoreCalculatorTests.Unit
             var result = sut.CalculateFinalScore();
 
             result.Should().Be(expected);
+        }
+
+        [Fact]
+        public void ScoreboardCalculatesScoreCorrectly()
+        {
+            int[][] frames = new[]
+            {
+                new[]{4, 3},
+                new[]{7, 3},
+                new[]{5, 2},
+                new[]{8, 1},
+                new[]{4, 6},
+                new[]{2, 4},
+                new[]{8, 0},
+                new[]{8, 0},
+                new[]{8, 2},
+                new[]{10, 1, 7},
+            };
+
+            var sut = new Scoreboard(frames);
+
+            var result = sut.CalculateFinalScore();
+
+            result.Should().Be(110);
         }
     }
 }

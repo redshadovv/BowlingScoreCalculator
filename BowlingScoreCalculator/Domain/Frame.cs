@@ -14,6 +14,7 @@ namespace BowlingScoreCalculator.Domain
             var rollsList = rolls.ToList();
 
             // validate
+            // TODO: disallow having second roll in frame 1-9 when first roll is a strike 
             switch (number)
             {
                 case var num when num > 0 && num < 10:
